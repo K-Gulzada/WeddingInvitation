@@ -117,7 +117,7 @@ body {
 /* Раскошный каллиграфический шрифт для имен */
 .calligraphy-names {
     font-family: 'ShelleyKz', cursive;
-    font-size: 56px;
+    font-size: 48px;
     color: #1a1a1a;
     font-weight: normal;
     line-height: 1.1;
@@ -127,7 +127,7 @@ body {
 /* Строгий элегантный шрифт для даты */
 .wedding-title {
     font-family: 'ShelleyKz', cursive;
-    font-size: 40px;
+    font-size: 38px;
     color: #1a1a1a;
     letter-spacing: 1px;
 }
@@ -237,7 +237,7 @@ body {
     text-align: center;
     position: relative;
     z-index: 10;
-    margin-top: 40px;
+    margin-top: 60px;
     background: transparent !important;
     /* Прозрачный фон */
 }
@@ -607,7 +607,7 @@ body {
 /* Точное позиционирование каждого цветка по референсу */
 .flower-top-left {
     width: 250px;
-    top: 270px;
+    top: 300px;
     left: 70px;
 }
 
@@ -620,7 +620,7 @@ body {
 
 .flower-bottom-left {
     width: 300px;
-    bottom: 350px;
+    bottom: 400px;
     left: -95px;
     transform: rotate(20deg);
 }
@@ -638,7 +638,7 @@ body {
 /* Заголовок "Той иелері:" */
 .hosts-title {
     font-family: 'ChampionScript', cursive;
-    font-size: 50px;
+    font-size: 44px;
     color: #4b5243;
     font-weight: normal;
     margin-bottom: 15px;
@@ -647,7 +647,7 @@ body {
 /* Имена родителей размашистым шрифтом */
 .hosts-names {
     font-family: 'ChampionScript', cursive;
-    font-size: 60px;
+    font-size: 50px;
     color: #4b5243;
     font-weight: normal;
     line-height: 1.2;
