@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="kk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аслан & Гүлзада - Үйлену тойы</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Главный мобильный контейнер сайта -->
+    <div class="wedding-app-container">
+
+        <!-- СТАРТОВЫЙ ЭКРАН (INTRO) -->
+        <div class="intro-screen">
+
+            <!-- Плавная дымка в нижней части фотографии -->
+            <div class="intro-fog"></div>
+
+            <!-- Музыкальный плеер (Кнопка Play справа над букетом) -->
+            <div class="music-player-btn" onclick="toggleWeddingMusic()">
+                <svg class="music-circle-text" viewBox="0 0 100 100">
+                    <!-- Радиус уменьшен до 23.8, чтобы текст плотно облегал кнопку -->
+                    <path id="textTrack" d="M 50, 50 m -26.5, 0 a 26.5,26.5 0 1,1 53,0 a 26.5,26.5 0 1,1 -53,0"
+                        fill="none" />
+                    <text>
+                        <textPath style="font-size: 10px" href="#textTrack" startOffset="50%" text-anchor="middle">
+                            Әуенді қосу • </textPath>
+                    </text>
+                </svg>
+                <div class="play-center-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                </div>
+            </div>
+            <audio id="weddingAudio" src="audio/wedding.mp3" loop></audio>
+
+            <!-- Блок с именами и датой, утопающий в тумане -->
+            <div class="intro-titles-block">
+                <h1 class="calligraphy-names">Аслан & Гүлзада</h1>
+                <div class="wedding-title">Тойға шақыру</div>
+            </div>
+
+        </div>
+
+        <div class="main-scroll-content">
+
+            <!-- Декоративный цветок в левом верхнем углу, который скользит вместе с текстом -->
+            <img src="images/flower_1.webp" class="corner-flower" alt="decor">
+
+            <!-- Контентная карточка с приглашением -->
+            <div class="invitation-card">
+                <p class="script-greeting">Құрметті</p>
+                <p class="script-text">
+                    ағайын-туыс, бауырлар, өлке-жезделер, нағашы-жиен, бөлелер, құда-жекжат, дос-жарандар мен
+                    әріптестер!
+                </p>
+
+                <div class="invitation-announcement">
+                    <p class="plain-call">Сіздерді ұлымыз</p>
+                    <h2 class="script-groom">Аслан</h2>
+                    <p class="plain-call">мен келініміз</p>
+                    <h2 class="script-bride">Гүлзаданың</h2>
+                    <p class="plain-call">үйлену тойына арналған салтанатты ақ дастарханымыздың қадірлі қонағы болуға
+                        шақырамыз!</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- БЛОК КАЛЕНДАРЯ (АВГУСТ 2026) -->
+        <div class="calendar-section">
+
+            <h2 class="calendar-title">Той салтанаты:</h2>
+            <div class="calendar-subtitle">1 тамыз 2026 жыл</div>
+
+            <!-- Дни недели -->
+            <div class="calendar-weekdays">
+                <div>ДС</div>
+                <div>СС</div>
+                <div>СР</div>
+                <div>БС</div>
+                <div>ЖМ</div>
+                <div>СН</div>
+                <div>ЖБ</div>
+            </div>
+
+            <!-- Сетка дней месяца -->
+            <div class="calendar-days">
+                <!-- 5 пустых ячеек, чтобы август начался ровно в Субботу -->
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <!-- 1 АВГУСТА (Суббота) — Дата свадьбы с бьющимся сердцем -->
+                <div class="wedding-day-cell">
+                    <span class="day-number">1</span>
+                    <img src="images/heart.webp" class="beating-heart" alt="heart">
+                </div>
+
+                <!-- Оставшиеся дни августа -->
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+                <div>10</div>
+                <div>11</div>
+                <div>12</div>
+                <div>13</div>
+                <div>14</div>
+                <div>15</div>
+                <div>16</div>
+                <div>17</div>
+                <div>18</div>
+                <div>19</div>
+                <div>20</div>
+                <div>21</div>
+                <div>22</div>
+                <div>23</div>
+                <div>24</div>
+                <div>25</div>
+                <div>26</div>
+                <div>27</div>
+                <div>28</div>
+                <div>29</div>
+                <div>30</div>
+                <div>31</div>
+            </div>
+
+            <!-- Время начала -->
+            <div class="time-block">
+                <h3 class="time-title">Басталуы</h3>
+                <div class="time-value">18:00</div>
+            </div>
+
+            <!-- БЛОК ТАЙМЕРА ОБРАТНОГО ОТСЧЕТА -->
+            <div class="countdown-section">
+                <h2 class="countdown-title">Тойға дейін:</h2>
+
+                <div class="timer-container">
+                    <!-- Дни -->
+                    <div class="timer-item">
+                        <div class="timer-card">
+                            <span id="days">00</span>
+                            <div class="card-line"></div>
+                        </div>
+                        <span class="timer-label">күн</span>
+                    </div>
+
+                    <!-- Часы -->
+                    <div class="timer-item">
+                        <div class="timer-card">
+                            <span id="hours">00</span>
+                            <div class="card-line"></div>
+                        </div>
+                        <span class="timer-label">сағат</span>
+                    </div>
+
+                    <!-- Минуты -->
+                    <div class="timer-item">
+                        <div class="timer-card">
+                            <span id="minutes">00</span>
+                            <div class="card-line"></div>
+                        </div>
+                        <span class="timer-label">минут</span>
+                    </div>
+
+                    <!-- Секунды -->
+                    <div class="timer-item">
+                        <div class="timer-card">
+                            <span id="seconds">00</span>
+                            <div class="card-line"></div>
+                        </div>
+                        <span class="timer-label">секунд</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- БЛОК МЕСТА ПРОВЕДЕНИЯ (ЛОКАЦИЯ) -->
+            <div class="location-section">
+
+                <!-- Большой свадебный букет сверху -->
+                <img src="images/flower_5.png" class="location-top-flower" alt="wedding bouquet">
+
+                <!-- Заголовок Мекен-жайымыз -->
+                <h2 class="location-title">Мекен-жайымыз:</h2>
+
+                <!-- Текстовый блок с адресом ресторана -->
+                <div class="address-block">
+                    <p class="address-city">АЛМАТЫ ОБЛЫСЫ,</p>
+                    <p class="address-street">КУЛЬДЖИНКА, 32,</p>
+                    <h3 class="restaurant-name">"Han Tau"</h3>
+                    <p class="address-type">МЕЙРАМХАНАСЫ</p>
+                </div>
+
+                <!-- Интерактивная кнопка-ссылка на 2GIS -->
+                <div class="map-link-block">
+                    <p class="map-text">2GIS ҚАРТА СІЛТЕМЕСІ ТӨМЕНДЕ</p>
+
+                    <a href="https://go.2gis.com/0nsYU" target="_blank" class="twogis-button">
+                        <img src="images/twogis.webp" alt="2GIS">
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- БЛОК ХОЗЯЕВ ТОЯ (ТОЙ ИЕЛЕРІ) -->
+            <div class="hosts-section">
+                <!-- Декоративные цветы по бокам и углам -->
+                <img src="images/flower_3.webp" class="host-flower flower-top-left" alt="decor">
+                <img src="images/flower_1.webp" class="host-flower flower-mid-right" alt="decor">
+                <img src="images/flower_6.webp" class="host-flower flower-bottom-left" alt="decor">
+
+                <!-- Текстовый блок -->
+                <div class="hosts-content">
+                    <h2 class="hosts-title">Той иелері:</h2>
+                    <div class="hosts-names">Қайсар - Раиса</div>
+                </div>
+            </div>
+            <!-- БЛОК ПОДТВЕРЖДЕНИЯ ПРИСУТСТВИЯ (RSVP) -->
+            <div class="rsvp-section">
+
+                <div class="rsvp-card">
+                    <!-- Внутренняя элегантная рамка -->
+                    <div class="rsvp-inner-border">
+
+                        <h2 class="rsvp-title">Тойға қатысуыңызды растауыңызды сұраймыз!</h2>
+
+                        <!-- Ограничение по дате -->
+                        <div class="rsvp-deadline">
+                            <span class="deadline-date">20.07.2026</span>
+                            <span class="deadline-text">ж. дейін</span>
+                            <div class="elegant-line"></div>
+                        </div>
+
+                        <!-- Интерактивная форма -->
+                        <form class="rsvp-form" onsubmit="sendRsvpToTelegram(event)">
+
+
+                            <!-- Поле ввода имени -->
+                            <div class="input-group">
+                                <input type="text" placeholder="Есіміңіз" required class="rsvp-input">
+                            </div>
+
+                            <!-- Кастомные радио-плашки выбора ответа -->
+                            <div class="radio-group">
+                                <label class="custom-radio">
+                                    <input type="radio" name="attendance" value="yes" checked>
+                                    <span class="radio-tile">
+                                        <span class="radio-circle"></span>
+                                        <span class="radio-text">Әрине келемін</span>
+                                    </span>
+                                </label>
+
+                                <label class="custom-radio">
+                                    <input type="radio" name="attendance" value="pair">
+                                    <span class="radio-tile">
+                                        <span class="radio-circle"></span>
+                                        <span class="radio-text">Жұбыммен келемін</span>
+                                    </span>
+                                </label>
+
+                                <label class="custom-radio">
+                                    <input type="radio" name="attendance" value="no">
+                                    <span class="radio-tile">
+                                        <span class="radio-circle"></span>
+                                        <span class="radio-text">Өкінішке орай, қатыса алмаймын</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <!-- Кнопка Отправить -->
+                            <button type="submit" class="rsvp-submit-btn">Жіберу</button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div> <!-- /rsvp-section -->
+
+            <!-- ФИНАЛЬНЫЙ ЭКРАН (ЗАКЛЮЧЕНИЕ) -->
+            <div class="final-section">
+
+                <!-- Красивое каллиграфическое пожелание гостям -->
+                <div class="final-text-block">
+                    <p class="final-script-text">Келіңіздер,</p>
+                    <p class="final-script-text">тойымыздың қадірлі</p>
+                    <p class="final-script-text">қонағы болыңыздар!</p>
+                </div>
+
+                <!-- Обручальные кольца по центру -->
+                <div class="rings-wrapper">
+                    <img src="images/rings.png" class="wedding-rings-img" alt="wedding rings">
+                </div>
+
+                <!-- Большая цветочная гирлянда в самом низу страницы -->
+                <div class="final-flowers-wrapper">
+                    <img src="images/flower_7.png" class="bottom-garland-img" alt="flower garland">
+                </div>
+
+            </div> <!-- /final-section -->
+
+
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

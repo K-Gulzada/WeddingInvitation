@@ -1,0 +1,894 @@
+/* Подключаем новые кастомные шрифты проекта */
+@font-face {
+    font-family: 'ShelleyKz';
+    src: url('fonts/AsylbekM02Shelleykz_.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MainTextFont';
+    src: url('fonts/1Pt_g8LJRfWJmhDAuUsSQamb1W0lwk4S4WjMDrMfIA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MainTextFont2';
+    src: url('fonts/1Pt_g8LJRfWJmhDAuUsSQamb1W0lwk4S4WjMDrMfIA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Kz_Ventura';
+    src: url('fonts/Kz_Ventura-Script_\ \(1\).woff') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KZPFMonumentaPro';
+    src: url('fonts/KZPFMonumentaPro-Reg.woff') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Подключаем размашистый каллиграфический шрифт с вензелями для приглашения */
+@font-face {
+    font-family: 'ChampionScript';
+    src: url('fonts/KZPF_Champion_Script.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f2f2f2;
+    /* Серый фон-рамка для ПК версии */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Мобильный экран-оболочка */
+.wedding-app-container {
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    /* НАДЕЖНЫЙ СКВОЗНОЙ ФОН: жестко привязываем картинку к мобильной рамке */
+    background-image: url('images/background.webp');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Стартовый экран с фоновым фото рук и букета */
+.intro-screen {
+    width: 100%;
+    height: 100vh;
+    background: #ffffff url('images/page_1_background.jpg') center top/cover no-repeat;
+    /* Добавили белый подслой */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 30px;
+    z-index: 5;
+}
+
+/* Создаем мягкий густой туман внизу фотографии */
+.intro-fog {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 52vh;
+    /* Увеличили высоту до 52% экрана, чтобы туман поднялся выше */
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 20%,
+            rgba(255, 255, 255, 0.75) 55%,
+            rgba(255, 255, 255, 0.98) 75%,
+            rgb(245 244 244) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Блок заголовков (Имена и Дата) */
+.intro-titles-block {
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Раскошный каллиграфический шрифт для имен */
+.calligraphy-names {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 56px;
+    color: #1a1a1a;
+    font-weight: normal;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+/* Строгий элегантный шрифт для даты */
+.wedding-title {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 40px;
+    color: #1a1a1a;
+    letter-spacing: 1px;
+}
+
+/* Интерактивная кнопка музыкального плеера */
+.music-player-btn {
+    position: absolute;
+    right: 5px;
+    bottom: 32%;
+    /* Точно позиционируем над свадебным букетом справа */
+    width: 95px;
+    height: 95px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 15;
+}
+
+.music-circle-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: spinText 14s linear infinite;
+}
+
+.music-circle-text text {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 4.5px;
+    /* Уменьшили буквы для плотной посадки */
+    fill: #ffffff;
+    /* Сделали цвет чисто белым */
+    letter-spacing: 0.6px;
+    font-weight: bold;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.7);
+    /* Тень, чтобы буквы читались на фоне листьев */
+}
+
+.play-center-icon {
+    width: 46px;
+    height: 46px;
+    background: rgb(144 156 134 / 65%);
+    /* Полупрозрачный белый цвет */
+    backdrop-filter: blur(2px);
+    /* Легкое размытие под кнопкой */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    /* Стрелочка Play теперь белая */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.play-center-icon svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+}
+
+/* Анимация бесконечного вращения текста */
+@keyframes spinText {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Контейнер всей остальной страницы */
+/* .main-scroll-content {
+    width: 100%;
+    min-height: 120vh;
+    position: relative;
+    padding: 60px 25px;
+    background-image: url('images/background.webp');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+} */
+
+.main-scroll-content {
+    width: 100%;
+    position: relative;
+    padding: 60px 25px;
+    background: transparent;
+    /* Полностью прозрачный, чтобы видеть фон рамки */
+}
+
+/* Декоративный цветок в углу */
+.corner-flower {
+    position: absolute;
+    top: -30px;
+    left: -40px;
+    width: 230px;
+    height: auto;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Карточка с текстом */
+.invitation-card {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    margin-top: 40px;
+    background: transparent !important;
+    /* Прозрачный фон */
+}
+
+/* Каллиграфические строки ("Құрметті", имена) */
+.script-greeting {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 38px;
+    color: #2b2b2b;
+    margin-bottom: 10px;
+}
+
+.script-text {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 30px;
+    color: #3a3a3a;
+    line-height: 1.4;
+    padding: 0 10px;
+    margin-bottom: 30px;
+}
+
+/* Строгие печатные надписи ("СІЗДЕРДІ ҰЛЫМЫЗ") */
+.plain-call {
+    /* font-family: 'Kz_Ventura', sans-serif; */
+    font-size: 18px;
+    color: #555555;
+    letter-spacing: 2px;
+    margin: 8px 0;
+}
+
+/* Большие акцентные имена молодоженов */
+.script-groom,
+.script-bride {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 48px;
+    color: #1a1a1a;
+    font-weight: normal;
+    line-height: 1.1;
+}
+
+/* Контейнер календаря */
+.calendar-section {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    padding: 0 10px;
+    background: transparent !important;
+    /* Убираем белый фон, проявляем background.webp */
+}
+
+/* Шрифты заголовков календаря */
+.calendar-title {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 52px;
+    color: #394d21;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.calendar-subtitle {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 44px;
+    color: #394d21;
+    margin-bottom: 25px;
+}
+
+/* Сетки дней недели и чисел месяца (строго 7 колонок) */
+.calendar-weekdays,
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center;
+    align-items: center;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* Дни недели */
+.calendar-weekdays {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 12px;
+    color: #000000;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 8px;
+}
+
+/* Числа месяца */
+.calendar-days {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 14px;
+    color: #333333;
+    row-gap: 18px;
+    /* Расстояние между строчками календаря */
+}
+
+/* Особая ячейка для даты свадьбы */
+.wedding-day-cell {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+/* Цифра 6 внутри сердца */
+.day-number {
+    position: relative;
+    z-index: 7;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+/* Картинка сердца и эффект сердцебиения */
+.beating-heart {
+    position: absolute;
+    width: 35px;
+    left: 0;
+    z-index: 6;
+    pointer-events: none;
+
+    /* Подключаем бесконечную анимацию пульса */
+    animation: heartPulse 3.0s ease-in-out infinite;
+}
+
+/* Блок времени ниже календаря */
+.time-block {
+    margin-top: 25px;
+}
+
+.time-title {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 40px;
+    color: #394d21;
+    font-weight: normal;
+    margin-bottom: 2px;
+}
+
+.time-value {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 40px;
+    color: #394d21;
+    letter-spacing: 1px;
+}
+
+/* КРИТИЧЕСКИ ВАЖНО: Анимация "Биение сердца" */
+@keyframes heartPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.18);
+        /* Сжатие/расширение при ударе */
+    }
+
+    60% {
+        transform: scale(1.05);
+    }
+
+    80% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Секция таймера */
+.countdown-section {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.countdown-title {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 36px;
+    color: #4b5243;
+    /* Красивый оливковый оттенок текста */
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+/* Контейнер для 4 блоков времени */
+.timer-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    /* Расстояние между плашками */
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.timer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Зеленая карточка-плашка */
+.timer-card {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    background-color: #4b5243;
+    /* Тот самый матовый оливково-зеленый цвет */
+    border-radius: 12px;
+    /* Мягкие скругленные углы */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+/* Белые цифры внутри плашки */
+.timer-card span {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+    z-index: 5;
+    letter-spacing: 0.5px;
+}
+
+/* Горизонтальная линия разделения посередине плашки */
+.card-line {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.12);
+    /* Тонкая полупрозрачная полоска */
+    z-index: 4;
+}
+
+/* Подписи под плашками (күн, сағат, минут, секунд) */
+.timer-label {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 12px;
+    color: #6e7367;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* Секция локации */
+.location-section {
+    width: 100%;
+    margin-top: 60px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    padding: 0 15px 50px;
+}
+
+/* Свадебный букет роз сверху по центру */
+.location-top-flower {
+    width: 85%;
+    max-width: 340px;
+    height: auto;
+    margin: 0 auto 15px;
+    display: block;
+    pointer-events: none;
+}
+
+/* Заголовок Мекен-жайымыз */
+.location-title {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 44px;
+    color: #4b5243;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+/* Текстовый блок адреса */
+.address-block {
+    margin-bottom: 30px;
+}
+
+.address-city,
+.address-street,
+.address-type {
+    /* font-family: 'MainTextFont', sans-serif; */
+    font-size: 15px;
+    color: #1a1a1a;
+    letter-spacing: 1.5px;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+/* Название ресторана каллиграфическим шрифтом */
+.restaurant-name {
+    font-family: 'ChampionScript', cursive;
+    font-size: 42px;
+    color: #4b5243;
+    font-weight: normal;
+    margin: 8px 0;
+}
+
+/* Блок ссылки на карту */
+.map-link-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.map-text {
+    /* font-family: 'MainTextFont', sans-serif; */
+    font-size: 13px;
+    color: #2b2b2b;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+}
+
+/* Кнопка-иконка 2GIS с мягкой анимацией нажатия */
+.twogis-button {
+    display: inline-block;
+    width: 120px;
+    /* height: 90px; */
+    margin-top: 5px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.twogis-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Легкий интерактивный эффект при клике/наведении */
+.twogis-button:active {
+    transform: scale(0.92);
+    filter: brightness(0.9);
+}
+
+/* Секция хозяев тоя */
+.hosts-section {
+    width: 100%;
+    min-height: 80vh;
+    /* Задаем блоку высоту, чтобы контент дышал */
+    margin-top: 80px;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Общие базовые настройки для трех цветов */
+.host-flower {
+    position: absolute;
+    height: auto;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Точное позиционирование каждого цветка по референсу */
+.flower-top-left {
+    width: 250px;
+    top: 270px;
+    left: 70px;
+}
+
+.flower-mid-right {
+    width: 220px;
+    top: -18%;
+    right: -55px;
+    transform: rotate(150deg);
+}
+
+.flower-bottom-left {
+    width: 300px;
+    bottom: 350px;
+    left: -95px;
+    transform: rotate(20deg);
+}
+
+/* Центрированный блок с текстом */
+.hosts-content {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: 0 30px;
+    margin-bottom: 110px;
+}
+
+/* Заголовок "Той иелері:" */
+.hosts-title {
+    font-family: 'ChampionScript', cursive;
+    font-size: 50px;
+    color: #4b5243;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+/* Имена родителей размашистым шрифтом */
+.hosts-names {
+    font-family: 'ChampionScript', cursive;
+    font-size: 60px;
+    color: #4b5243;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+/* Секция RSVP */
+.rsvp-section {
+    width: 100%;
+    min-height: 90vh; /* Занимает почти весь экран по высоте */
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    padding: 0 10px;
+}
+
+/* Большая благородная карточка формы */
+.rsvp-card {
+    width: 100%;
+    max-width: 390px;
+    background-color: #b7c0b0; /* Фирменный нежно-зеленый цвет как на вашем фото */
+    border-radius: 24px;
+    padding: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Внутренняя тонкая белая рамка для эффекта полиграфии */
+.rsvp-inner-border {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
+    padding: 35px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Заголовок формы */
+.rsvp-title {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #2b3026;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Блок дедлайна */
+.rsvp-deadline {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.deadline-date {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2b3026;
+    letter-spacing: 1px;
+}
+
+.deadline-text {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 16px;
+    color: #2b3026;
+}
+
+/* Тонкая разделительная линия */
+.elegant-line {
+    width: 60px;
+    height: 1px;
+    background-color: rgba(43, 48, 38, 0.2);
+    margin: 12px auto 0;
+}
+
+.rsvp-form {
+    width: 100%;
+}
+
+/* Поле ввода имени */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.rsvp-input {
+    width: 100%;
+    height: 52px;
+    background-color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 30px; /* Сильное скругление */
+    padding: 0 25px;
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 15px;
+    color: #333333;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.rsvp-input::placeholder {
+    color: #999999;
+}
+
+/* Стилизация интерактивных радио-кнопок */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.custom-radio {
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Прячем дефолтную круглую точку */
+.custom-radio input {
+    display: none;
+}
+
+/* Кастомная плашка ответа */
+.radio-tile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    background-color: rgba(255, 255, 255, 0.15); /* Полупрозрачная подложка */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    transition: all 0.25s ease;
+}
+
+/* Кружочек-индикатор */
+.radio-circle {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.radio-text {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 14px;
+    color: #2b3026;
+    font-weight: 500;
+}
+
+/* МАГИЯ ХОВЕРА И ВЫБОРА: когда радиокнопка активна */
+.custom-radio input:checked + .radio-tile {
+    background-color: #ffffff; /* Белая плашка при выборе */
+    border-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.custom-radio input:checked + .radio-tile .radio-circle {
+    border-color: #4b5243;
+    background-color: #4b5243; /* Закрашиваем кружок внутри выбранной плашки */
+}
+
+/* Кнопка отправки */
+.rsvp-submit-btn {
+    width: 100%;
+    max-width: 180px;
+    height: 48px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #4b5243;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.rsvp-submit-btn:active {
+    transform: scale(0.96);
+}
+
+/* Финальная секция */
+.final-section {
+    width: 100%;
+    min-height: 85vh; /* Задаем хорошую высоту, чтобы красиво распределить элементы */
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Текст сверху, кольца в центре, цветы строго снизу */
+    position: relative;
+    z-index: 10;
+    padding-top: 40px;
+}
+
+/* Каллиграфический блок текста */
+.final-text-block {
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.final-script-text {
+    font-family: 'ShelleyKz', cursive;
+    font-size: 44px; /* Нежный, хорошо читаемый размер */
+    color: #4b5243; /* Наш фирменный оливково-зеленый цвет текста */
+    line-height: 1.4;
+    margin-bottom: 2px;
+}
+
+/* Блок обручальных колец */
+.rings-wrapper {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wedding-rings-img {
+    width: 140px; /* Оптимальный размер колец, чтобы они не перетягивали всё внимание */
+    height: auto;
+    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.08)); /* Мягкая тень под кольцами */
+}
+
+/* Блок нижней цветочной гирлянды */
+.final-flowers-wrapper {
+    width: 90%; /* Делаем чуть шире экрана, чтобы лепестки красиво уходили в края */
+    line-height: 0; /* Убираем дефолтные отступы у картинки */
+}
+
+.bottom-garland-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+}
