@@ -892,3 +892,81 @@ body {
     display: block;
     pointer-events: none;
 }
+
+/* Фоновая полупрозрачная вуаль */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px); /* Легкое размытие заднего плана */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Поверх всех элементов */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Показываем окно при активации класса */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Белая плашка самого окна */
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px 24px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+/* Текст благодарности */
+.modal-message {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+/* Стильная кнопка ОК */
+.modal-close-btn {
+    font-family: 'MainTextFont', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #4b5243; /* Наш оливковый цвет */
+    border: none;
+    padding: 10px 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+}
+
+.modal-close-btn:active {
+    background-color: #3d4337;
+}
+
+/* Если окно открылось в режиме ошибки, меняем цвет кнопки на предупреждающий */
+.modal-overlay.error-mode .modal-close-btn {
+    background-color: #9c4a4a; /* Приглушенный красный цвет */
+}
+
+.modal-overlay.error-mode .modal-close-btn:active {
+    background-color: #7a3838;
+}

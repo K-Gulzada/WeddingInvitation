@@ -19,7 +19,7 @@ function startWeddingCountdown() {
     // Устанавливаем дату свадьбы: 1 августа 2026 года, 18:00
     const targetDate = new Date('August 1, 2026 18:00:00').getTime();
 
-    const timerInterval = setInterval(function() {
+    const timerInterval = setInterval(function () {
         const now = new Date().getTime();
         const difference = targetDate - now;
 
@@ -49,9 +49,34 @@ function startWeddingCountdown() {
 }
 
 // Запускаем таймер сразу при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     startWeddingCountdown();
 });
+
+// Функция открытия универсального окна
+function openCustomModal(text, isError = false) {
+    const modal = document.getElementById('customModal');
+    const messageElement = document.getElementById('modalMessage');
+
+    // Вставляем переданный текст
+    messageElement.innerText = text;
+
+    if (isError) {
+        // Если это ошибка — включаем красный режим
+        modal.classList.add('error-mode');
+    } else {
+        // Если все хорошо — убираем его (на случай, если он остался с прошлого раза)
+        modal.classList.remove('error-mode');
+    }
+
+    // Показываем окно
+    modal.classList.add('active');
+}
+
+// Функция закрытия окна
+function closeCustomModal() {
+    document.getElementById('customModal').classList.remove('active');
+}
 
 function sendRsvpToTelegram(event) {
     event.preventDefault(); // Запрещаем перезагрузку страницы
@@ -62,10 +87,10 @@ function sendRsvpToTelegram(event) {
 
     // Получаем имя гостя из формы
     const guestName = document.querySelector('.rsvp-input').value;
-    
+
     // Получаем выбранный вариант ответа
     const selectedAnswer = document.querySelector('input[name="attendance"]:checked').value;
-    
+
     // Переводим ответы на красивый язык для сообщения
     let answerText = '';
     if (selectedAnswer === 'yes') answerText = '✅ Әрине келемін';
@@ -76,7 +101,7 @@ function sendRsvpToTelegram(event) {
     const message = `🔔 *Жаңа жауап қабылданды!*\n\n👤 *Есімі:* ${guestName}\n💬 *Жауабы:* ${answerText}`;
 
     // URL для отправки запроса в Telegram API
-   // const url = `https://telegram.org/bot${telegramToken}/sendMessage`;
+    // const url = `https://telegram.org/bot${telegramToken}/sendMessage`;
     const url = `https://api.telegram.org/bot8822621557:AAEi9BVjtnVSh3BvpQx9DJUVpa-xoaHh7e8/sendMessage`;
 
     // Отправляем данные на сервера Telegram
@@ -88,20 +113,23 @@ function sendRsvpToTelegram(event) {
         body: JSON.stringify({
             chat_id: chatId,
             text: message,
-            parse_mode: 'Markdown' // Чтобы текст был жирным и красивым
+            parse_mode: 'Markdown'
         })
     })
-    .then(response => {
-        if (response.ok) {
-            alert('Рахмет! Жауап сәтті қабылданды.');
-            document.querySelector('.rsvp-form').reset(); // Очищаем форму после отправки
-        } else {
-            alert('Қате кетті. Қайтадан байқап көріңіз.');
-        }
-    })
-    .catch(error => {
-        console.error('Ошибка:', error);
-        alert('Желіде қате кетті.');
-    });
+        .then(response => {
+            if (response.ok) {
+                // Успех — передаем текст благодарности
+                openCustomModal('Рахмет! Жауап сәтті қабылданды.', false);
+                document.querySelector('.rsvp-form').reset(); // Очищаем форму
+            } else {
+                // Ошибка сервера Telegram (например, неверный токен или ID)
+                openCustomModal('Жауап жіберілмеді. Серверде қате кетті.', true);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+            // Ошибка сети (интернет отключен или заблокирован запрос)
+            openCustomModal('Желіде қате кетті. Кейінірек қайталап көріңіз.', true);
+        });
 }
 
