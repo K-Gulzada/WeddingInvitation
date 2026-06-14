@@ -237,7 +237,7 @@ body {
     text-align: center;
     position: relative;
     z-index: 10;
-    margin-top: 60px;
+    margin-top: 70px;
     background: transparent !important;
     /* Прозрачный фон */
 }
@@ -256,7 +256,7 @@ body {
     color: #3a3a3a;
     line-height: 1.4;
     padding: 0 10px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 /* Строгие печатные надписи ("СІЗДЕРДІ ҰЛЫМЫЗ") */
@@ -529,7 +529,7 @@ body {
 .address-street,
 .address-type {
     /* font-family: 'MainTextFont', sans-serif; */
-    font-size: 15px;
+    font-size: 18px;
     color: #1a1a1a;
     letter-spacing: 1.5px;
     line-height: 1.8;
@@ -539,7 +539,7 @@ body {
 /* Название ресторана каллиграфическим шрифтом */
 .restaurant-name {
     font-family: 'ChampionScript', cursive;
-    font-size: 42px;
+    font-size: 48px;
     color: #4b5243;
     font-weight: normal;
     margin: 8px 0;
@@ -551,7 +551,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 60px;
 }
 
 .map-text {
@@ -607,7 +607,7 @@ body {
 /* Точное позиционирование каждого цветка по референсу */
 .flower-top-left {
     width: 250px;
-    top: 300px;
+    top: 350px;
     left: 70px;
 }
 
