@@ -200,24 +200,13 @@ body {
 }
 
 /* Контейнер всей остальной страницы */
-/* .main-scroll-content {
-    width: 100%;
-    min-height: 120vh;
-    position: relative;
-    padding: 60px 25px;
-    background-image: url('images/background.webp');
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-} */
 
 .main-scroll-content {
     width: 100%;
     position: relative;
-    padding: 60px 25px;
+    padding: 60px 25px 90px 25px; 
     background: transparent;
-    /* Полностью прозрачный, чтобы видеть фон рамки */
+    box-sizing: border-box;
 }
 
 /* Декоративный цветок в углу */
@@ -237,16 +226,30 @@ body {
     text-align: center;
     position: relative;
     z-index: 10;
-    margin-top: 70px;
+    margin-top: 50px; /* 70px */
     background: transparent !important;
-    /* Прозрачный фон */
+}
+
+.wedding-divider {
+    display: block;
+    font-size: 24px;
+    color: #b59a6d; /* Цвет приглушенного золота */
+    margin: 15px auto;
+    text-align: center;
+    letter-spacing: 6px;
+    opacity: 0.8;
+}
+
+/* Вставляем три изящные золотые точки в ряд */
+.wedding-divider::after {
+    content: "✦ ✦ ✦"; /* Красивые четырехконечные звездочки/ромбики */
 }
 
 /* Каллиграфические строки ("Құрметті", имена) */
 .script-greeting {
     font-family: 'ShelleyKz', cursive;
     font-size: 38px;
-    color: #2b2b2b;
+    color: #2d4a3e; /*#2b2b2b;*/
     margin-bottom: 10px;
 }
 
@@ -256,16 +259,15 @@ body {
     color: #3a3a3a;
     line-height: 1.4;
     padding: 0 10px;
-    margin-bottom: 50px;
+    margin-bottom: 15px; /*50px*/
 }
 
 /* Строгие печатные надписи ("СІЗДЕРДІ ҰЛЫМЫЗ") */
 .plain-call {
-    /* font-family: 'Kz_Ventura', sans-serif; */
-    font-size: 18px;
-    color: #555555;
+    font-size: 18px; /*15px*/
+    color: #555555; /*#666666*/
     letter-spacing: 2px;
-    margin: 8px 0;
+    margin: 8px 0; /*6px 0*/
 }
 
 /* Большие акцентные имена молодоженов */
@@ -273,9 +275,10 @@ body {
 .script-bride {
     font-family: 'ShelleyKz', cursive;
     font-size: 48px;
-    color: #1a1a1a;
+    color: #213a2f; /*#1a1a1a*/;
     font-weight: normal;
     line-height: 1.1;
+    margin: 5px 0;
 }
 
 /* Контейнер календаря */
@@ -295,7 +298,6 @@ body {
     font-size: 52px;
     color: #394d21;
     font-weight: normal;
-    margin-bottom: 5px;
 }
 
 .calendar-subtitle {
@@ -339,8 +341,8 @@ body {
 /* Особая ячейка для даты свадьбы */
 .wedding-day-cell {
     position: relative;
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -369,7 +371,7 @@ body {
 
 /* Блок времени ниже календаря */
 .time-block {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .time-title {
@@ -969,4 +971,82 @@ body {
 
 .modal-overlay.error-mode .modal-close-btn:active {
     background-color: #7a3838;
+}
+
+/* Анимация */
+
+/* Базовая настройка для имен, чтобы они не переносились на новые строки */
+.calligraphy-names {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px; /* Расстояние между именами и знаком & */
+    flex-wrap: nowrap;
+}
+
+/* Классы для анимации */
+.calligraphy-names .anim-left {
+    display: inline-block;
+    opacity: 0;
+    animation: slideFromLeft 1.2s ease-out forwards;
+    animation-delay: 0.3s; /* Небольшая пауза после открытия сайта */
+}
+
+.calligraphy-names .anim-right {
+    display: inline-block;
+    opacity: 0;
+    animation: slideFromRight 1.2s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+.calligraphy-names .anim-center {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeInAmp 1.5s ease-out forwards;
+    animation-delay: 0.8s; /* Амперсанд проявится чуть позже имен */
+}
+
+.wedding-title.anim-up {
+    opacity: 0;
+    animation: slideFromBottom 1.2s ease-out forwards;
+    animation-delay: 1.3s; /* Подпись появится в самом конце */
+}
+
+/* Ключевые кадры анимаций */
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-35px); /* Мягкий вылет слева */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(35px); /* Мягкий вылет справа */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInAmp {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Мягкое проявление снизу вверх */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
