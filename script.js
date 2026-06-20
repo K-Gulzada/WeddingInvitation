@@ -1,3 +1,26 @@
+let lastWidth = window.innerWidth;
+
+function fixIntroHeight() {
+    const intro = document.querySelector('.intro-screen');
+    if (!intro) return;
+
+    // Сразу жестко фиксируем высоту в пикселях при первой загрузке
+    const actualHeight = window.innerHeight;
+    intro.style.height = actualHeight + 'px';
+
+    // Слушаем изменение размеров экрана
+    window.addEventListener('resize', () => {
+        const currentWidth = window.innerWidth;
+
+        // Если ширина НЕ изменилась (это просто скрылся хедер при скролле) — ИГНОРИРУЕМ
+        if (currentWidth === lastWidth) return; 
+
+        // Если ширина изменилась (телефон перевернули) — пересчитываем
+        lastWidth = currentWidth;
+        intro.style.height = window.innerHeight + 'px';
+    });
+}
+
 function toggleWeddingMusic() {
     const audio = document.getElementById('weddingAudio');
     const iconContainer = document.querySelector('.play-center-icon');
@@ -12,7 +35,6 @@ function toggleWeddingMusic() {
         iconContainer.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
     }
 }
-
 
 // Функция обратного отсчета для таймера
 function startWeddingCountdown() {
@@ -48,9 +70,10 @@ function startWeddingCountdown() {
     }, 1000);
 }
 
-// Запускаем таймер сразу при загрузке страницы
+// Запускаем таймер сразу при загрузке страницы и фиксацию высоты интро-блока
 document.addEventListener('DOMContentLoaded', function () {
     startWeddingCountdown();
+    fixIntroHeight();
 });
 
 // Функция открытия универсального окна
@@ -82,22 +105,22 @@ function sendRsvpToGoogleTable(event) {
     event.preventDefault();
 
     const form = event.target;
+    const formData = new FormData(form);
     const button = document.getElementById('submitBtn');
 
     // Блокируем кнопку и стираем текст, оставляя ТОЛЬКО спиннер по центру
-    //button.disabled = true;
+    button.disabled = true;
     button.innerHTML = '<span class="spinner"></span>';
     button.style.opacity = "0.8";
 
     // Дальше весь твой код отправки идет без изменений...
-    // const inputs = form.querySelectorAll('input, select, textarea');
-    // inputs.forEach(input => {
-    //     input.disabled = true;
-    //     input.style.opacity = "0.6";
-    // });
+    const inputs = form.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.disabled = true;
+        input.style.opacity = "0.6";
+    });
 
     const scriptURL = 'https://script.google.com/macros/s/AKfycbx-rhcce5h2qnHR7ey442Y0jKEbpMbHPWDORHrK6df7PPvhcyGAFjGgleuSP-f-OixqXg/exec';
-    const formData = new FormData(form);
 
     const nameField = form.querySelector('[name="name"]');
     const attendanceField = form.querySelector('[name="attendance"]:checked');
@@ -106,14 +129,13 @@ function sendRsvpToGoogleTable(event) {
     console.log("3. Выбранный элемент радиокнопки:", attendanceField);
     console.log("4. Значение выбранной радиокнопки:", attendanceField ? attendanceField.value : "НЕ ВЫБРАН РАДИОБАТТОН С name='attendance'");
 
-
     fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => {
             openCustomModal('Рахмет! Жауап сәтті қабылданды.', false);
 
             // Фиксируем финальный статус
             button.innerHTML = "Жіберу";
-            //button.disabled = true;
+            button.disabled = true;
             button.style.opacity = "0.6";
         })
         .catch(error => {
