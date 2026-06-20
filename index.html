@@ -190,134 +190,131 @@
                 </div>
             </div>
 
-            <!-- БЛОК МЕСТА ПРОВЕДЕНИЯ (ЛОКАЦИЯ) -->
-            <div class="location-section">
+        </div>
 
-                <!-- Большой свадебный букет сверху -->
-                <img src="images/flower_5.png" class="location-top-flower" alt="wedding bouquet">
+        <!-- БЛОК МЕСТА ПРОВЕДЕНИЯ (ЛОКАЦИЯ) -->
+        <div class="location-section">
 
-                <!-- Заголовок Мекен-жайымыз -->
-                <h2 class="location-title">Мекен-жайымыз:</h2>
+            <!-- Большой свадебный букет сверху -->
+            <img src="images/flower_5.png" class="location-top-flower" alt="wedding bouquet">
 
-                <!-- Текстовый блок с адресом ресторана -->
-                <div class="address-block">
-                    <p class="address-city">АЛМАТЫ ОБЛЫСЫ,</p>
-                    <p class="address-street">КУЛЬДЖИНКА, 32,</p>
-                    <h3 class="restaurant-name">"Han Tau"</h3>
-                    <p class="address-type">МЕЙРАМХАНАСЫ</p>
-                </div>
+            <!-- Заголовок Мекен-жайымыз -->
+            <h2 class="location-title">Мекен-жайымыз:</h2>
 
-                <!-- Интерактивная кнопка-ссылка на 2GIS -->
-                <div class="map-link-block">
-                    <p class="map-text">2GIS ҚАРТА СІЛТЕМЕСІ ТӨМЕНДЕ</p>
-
-                    <a href="https://go.2gis.com/0nsYU" target="_blank" class="twogis-button">
-                        <img src="images/twogis.webp" alt="2GIS">
-                    </a>
-                </div>
-
+            <!-- Текстовый блок с адресом ресторана -->
+            <div class="address-block">
+                <p class="address-city">АЛМАТЫ ОБЛЫСЫ,</p>
+                <p class="address-street">КУЛЬДЖИНКА, 32,</p>
+                <h3 class="restaurant-name">"Han Tau"</h3>
+                <p class="address-type">МЕЙРАМХАНАСЫ</p>
             </div>
 
-            <!-- БЛОК ХОЗЯЕВ ТОЯ (ТОЙ ИЕЛЕРІ) -->
-            <div class="hosts-section">
-                <!-- Декоративные цветы по бокам и углам -->
-                <img src="images/flower_3.webp" class="host-flower flower-top-left" alt="decor">
-                <img src="images/flower_1.webp" class="host-flower flower-mid-right" alt="decor">
-                <img src="images/flower_6.webp" class="host-flower flower-bottom-left" alt="decor">
+            <!-- Интерактивная кнопка-ссылка на 2GIS -->
+            <div class="map-link-block">
+                <p class="map-text">2GIS ҚАРТА СІЛТЕМЕСІ ТӨМЕНДЕ</p>
 
-                <!-- Текстовый блок -->
-                <div class="hosts-content">
-                    <h2 class="hosts-title">Той иелері:</h2>
-                    <div class="hosts-names">Қайсар - Раиса</div>
-                </div>
+                <a href="https://go.2gis.com/0nsYU" target="_blank" class="twogis-button">
+                    <img src="images/twogis.webp" alt="2GIS">
+                </a>
             </div>
-            <!-- БЛОК ПОДТВЕРЖДЕНИЯ ПРИСУТСТВИЯ (RSVP) -->
-            <div class="rsvp-section">
-
-                <div class="rsvp-card">
-                    <!-- Внутренняя элегантная рамка -->
-                    <div class="rsvp-inner-border">
-
-                        <h2 class="rsvp-title">Тойға қатысуыңызды растауыңызды сұраймыз!</h2>
-
-                        <!-- Ограничение по дате -->
-                        <div class="rsvp-deadline">
-                            <span class="deadline-date">20.07.2026</span>
-                            <span class="deadline-text">ж. дейін</span>
-                            <div class="elegant-line"></div>
-                        </div>
-
-                        <!-- Интерактивная форма -->
-                        <form class="rsvp-form" onsubmit="sendRsvpToTelegram(event)">
-
-
-                            <!-- Поле ввода имени -->
-                            <div class="input-group">
-                                <input type="text" placeholder="Есіміңіз" required class="rsvp-input">
-                            </div>
-
-                            <!-- Кастомные радио-плашки выбора ответа -->
-                            <div class="radio-group">
-                                <label class="custom-radio">
-                                    <input type="radio" name="attendance" value="yes" checked>
-                                    <span class="radio-tile">
-                                        <span class="radio-circle"></span>
-                                        <span class="radio-text">Әрине келемін</span>
-                                    </span>
-                                </label>
-
-                                <label class="custom-radio">
-                                    <input type="radio" name="attendance" value="pair">
-                                    <span class="radio-tile">
-                                        <span class="radio-circle"></span>
-                                        <span class="radio-text">Жұбыммен келемін</span>
-                                    </span>
-                                </label>
-
-                                <label class="custom-radio">
-                                    <input type="radio" name="attendance" value="no">
-                                    <span class="radio-tile">
-                                        <span class="radio-circle"></span>
-                                        <span class="radio-text">Өкінішке орай, қатыса алмаймын</span>
-                                    </span>
-                                </label>
-                            </div>
-
-                            <!-- Кнопка Отправить -->
-                            <button type="submit" class="rsvp-submit-btn">Жіберу</button>
-
-                        </form>
-
-                    </div>
-                </div>
-
-            </div> <!-- /rsvp-section -->
-
-            <!-- ФИНАЛЬНЫЙ ЭКРАН (ЗАКЛЮЧЕНИЕ) -->
-            <div class="final-section">
-
-                <!-- Красивое каллиграфическое пожелание гостям -->
-                <div class="final-text-block">
-                    <p class="final-script-text">Келіңіздер,</p>
-                    <p class="final-script-text">тойымыздың қадірлі</p>
-                    <p class="final-script-text">қонағы болыңыздар!</p>
-                </div>
-
-                <!-- Обручальные кольца по центру -->
-                <div class="rings-wrapper">
-                    <img src="images/rings.png" class="wedding-rings-img" alt="wedding rings">
-                </div>
-
-                <!-- Большая цветочная гирлянда в самом низу страницы -->
-                <div class="final-flowers-wrapper">
-                    <img src="images/flower_7.png" class="bottom-garland-img" alt="flower garland">
-                </div>
-
-            </div> <!-- /final-section -->
-
-
 
         </div>
+
+        <!-- БЛОК ХОЗЯЕВ ТОЯ (ТОЙ ИЕЛЕРІ) -->
+        <div class="hosts-section">
+            <!-- Декоративные цветы по бокам и углам -->
+            <img src="images/flower_3.webp" class="host-flower flower-top-left" alt="decor">
+            <img src="images/flower_1.webp" class="host-flower flower-mid-right" alt="decor">
+            <img src="images/flower_6.webp" class="host-flower flower-bottom-left" alt="decor">
+
+            <!-- Текстовый блок -->
+            <div class="hosts-content">
+                <h2 class="hosts-title">Той иелері:</h2>
+                <div class="hosts-names">Қайсар - Раиса</div>
+            </div>
+        </div>
+        <!-- БЛОК ПОДТВЕРЖДЕНИЯ ПРИСУТСТВИЯ (RSVP) -->
+        <div class="rsvp-section">
+
+            <div class="rsvp-card">
+                <!-- Внутренняя элегантная рамка -->
+                <div class="rsvp-inner-border">
+
+                    <h2 class="rsvp-title">Тойға қатысуыңызды растауыңызды сұраймыз!</h2>
+
+                    <!-- Ограничение по дате -->
+                    <div class="rsvp-deadline">
+                        <span class="deadline-date">20.07.2026</span>
+                        <span class="deadline-text">ж. дейін</span>
+                        <div class="elegant-line"></div>
+                    </div>
+
+                    <!-- Интерактивная форма -->
+                    <form class="rsvp-form" onsubmit="sendRsvpToGoogleTable(event)">
+
+                        <!-- Поле ввода имени -->
+                        <div class="input-group">
+                            <input type="text" name="name" placeholder="Есіміңіз" required class="rsvp-input">
+                        </div>
+
+                        <!-- Кастомные радио-плашки выбора ответа -->
+                        <div class="radio-group">
+                            <label class="custom-radio">
+                                <input type="radio" name="attendance" value="Әрине келемін" checked>
+                                <span class="radio-tile">
+                                    <span class="radio-circle"></span>
+                                    <span class="radio-text">Әрине келемін</span>
+                                </span>
+                            </label>
+
+                            <label class="custom-radio">
+                                <input type="radio" name="attendance" value="Жұбыммен келемін">
+                                <span class="radio-tile">
+                                    <span class="radio-circle"></span>
+                                    <span class="radio-text">Жұбыммен келемін</span>
+                                </span>
+                            </label>
+
+                            <label class="custom-radio">
+                                <input type="radio" name="attendance" value="Өкінішке орай, қатыса алмаймын">
+                                <span class="radio-tile">
+                                    <span class="radio-circle"></span>
+                                    <span class="radio-text">Өкінішке орай, қатыса алмаймын</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Кнопка Отправить -->
+                        <button id="submitBtn" type="submit" class="rsvp-submit-btn">Жіберу</button>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div> <!-- /rsvp-section -->
+
+        <!-- ФИНАЛЬНЫЙ ЭКРАН (ЗАКЛЮЧЕНИЕ) -->
+        <div class="final-section">
+
+            <!-- Красивое каллиграфическое пожелание гостям -->
+            <div class="final-text-block">
+                <p class="final-script-text">Келіңіздер,</p>
+                <p class="final-script-text">тойымыздың қадірлі</p>
+                <p class="final-script-text">қонағы болыңыздар!</p>
+            </div>
+
+            <!-- Обручальные кольца по центру -->
+            <div class="rings-wrapper">
+                <img src="images/rings.png" class="wedding-rings-img" alt="wedding rings">
+            </div>
+
+            <!-- Большая цветочная гирлянда в самом низу страницы -->
+            <div class="final-flowers-wrapper">
+                <img src="images/flower_7.png" class="bottom-garland-img" alt="flower garland">
+            </div>
+
+        </div> <!-- /final-section -->
     </div>
 
     <!-- Универсальное кастомное окно (динамическое) -->

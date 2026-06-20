@@ -299,21 +299,53 @@ body {
 
 /* Контейнер календаря */
 .calendar-section {
-    width: 100%;
-    text-align: center;
+    width: 90%; /* Оставляем небольшие элегантные отступы по бокам от краев сайта */
+    max-width: 400px;
+    margin: auto; /* Делаем красивый отступ сверху и снизу от других блоков */
+    /* Увеличиваем верхний отступ (padding-top) до 70px, чтобы заголовок "Той салтанаты" не упирался в купол */
+    padding: 70px 20px 40px 20px; 
+    background: #ffffff; /* Белоснежный фон самой арки */    
+    /* ГЛАВНЫЙ ЭФФЕКТ ДВЕРИ: скругляем только левый и правый верхние углы */
+    border-radius: 200px 200px 0 0; 
+    /* Добавляем очень мягкую, едва заметную тень для объема */
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05); 
+    
     position: relative;
     z-index: 10;
-    padding: 0 10px;
-    background: transparent !important;
-    /* Убираем белый фон, проявляем background.webp */
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 25px 25px 10px #ffffff;
+}
+
+/* Вешаем нашу новую эвкалиптовую гирлянду на верхний изгиб */
+.calendar-section::before {
+    content: "";
+    position: absolute;
+    /* Сдвигаем веточку на самый верх арки */
+    top: -55px; /* Если веточка сядет слишком высоко или низко, поправь это число */
+    left: 50%;
+    transform: translateX(-50%); /* Точное центрирование по горизонтали */
+    
+    /* Размеры картинки с листьями */
+    width: 105%; /* Сделаем чуть шире арки, чтобы листья красиво свисали по бокам */
+    max-width: 380px; 
+    height: 160px; /* Высота контейнера под дугу */
+    background-image: url('images/arch-eucalyptus.png'); 
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+    
+    z-index: 15; /* Листья лягут строго поверх белого купола */
+    pointer-events: none; /* Чтобы картинка не мешала кликать по календарю */
 }
 
 /* Шрифты заголовков календаря */
 .calendar-title {
     font-family: 'ShelleyKz', cursive;
-    font-size: 52px;
+    font-size: 40px;
     color: #394d21;
     font-weight: normal;
+    display: flex;
+    justify-content: center;
 }
 
 .calendar-subtitle {
@@ -321,6 +353,8 @@ body {
     font-size: 44px;
     color: #394d21;
     margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
 }
 
 /* Сетки дней недели и чисел месяца (строго 7 колонок) */
@@ -387,7 +421,10 @@ body {
 
 /* Блок времени ниже календаря */
 .time-block {
+    display: flex;
     margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .time-title {
@@ -791,6 +828,19 @@ body {
     display: none;
 }
 
+/* Когда инпут заблокирован, плашка становится блеклой и на нее нельзя нажать */
+.custom-radio input:disabled ~ .radio-tile {
+    opacity: 0.5;
+    cursor: not-allowed; /* Курсор при наведении покажет, что кликнуть нельзя */
+    pointer-events: none; /* Полностью отключаем реакцию на тапы на телефонах */
+}
+
+/* Отключаем эффект изменения цвета при наведении (hover), если форма уже отправлена */
+.custom-radio input:disabled ~ .radio-tile:hover {
+    border-color: transparent; /* или какой цвет рамки у тебя по умолчанию */
+    background: transparent;
+}
+
 /* Кастомная плашка ответа */
 .radio-tile {
     display: flex;
@@ -855,6 +905,26 @@ body {
     transform: scale(0.96);
 }
 
+/* Контейнер для спиннера внутри кнопки — теперь ровно по центру */
+.spinner {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Тонкая основа */
+    border-radius: 50%;
+    border-top-color: #b59a6d; /* Золотой бегунок */
+    
+    animation: spinLoader 0.8s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes spinLoader {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
 /* Финальная секция */
 .final-section {
     width: 100%;
@@ -895,7 +965,11 @@ body {
 .wedding-rings-img {
     width: 140px; /* Оптимальный размер колец, чтобы они не перетягивали всё внимание */
     height: auto;
-    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.08)); /* Мягкая тень под кольцами */
+    /* Подключаем анимацию heartPulse, но растягиваем её на 4 секунды для плавности */
+    animation: heartPulse 4.0s ease-in-out infinite;
+    
+    /* Добавим легкую мягкую тень под кольцами для объема */
+    filter: drop-shadow(0 5px 10px rgba(181, 154, 109, 0.15));
 }
 
 /* Блок нижней цветочной гирлянды */

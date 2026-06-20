@@ -78,57 +78,52 @@ function closeCustomModal() {
     document.getElementById('customModal').classList.remove('active');
 }
 
-function sendRsvpToTelegram(event) {
-    event.preventDefault(); // Запрещаем перезагрузку страницы
+function sendRsvpToGoogleTable(event) {
+    event.preventDefault();
 
-    // ВСТАВЬТЕ СЮДА ВАШИ ДАННЫЕ ИЗ ШАГА 1:
-    const telegramToken = '8822621557:AAEi9BVjtnVSh3BvpQx9DJUVpa-xoaHh7e8';
-    const chatId = '693082270';
+    const form = event.target;
+    const button = document.getElementById('submitBtn');
 
-    // Получаем имя гостя из формы
-    const guestName = document.querySelector('.rsvp-input').value;
+    // Блокируем кнопку и стираем текст, оставляя ТОЛЬКО спиннер по центру
+    //button.disabled = true;
+    button.innerHTML = '<span class="spinner"></span>';
+    button.style.opacity = "0.8";
 
-    // Получаем выбранный вариант ответа
-    const selectedAnswer = document.querySelector('input[name="attendance"]:checked').value;
+    // Дальше весь твой код отправки идет без изменений...
+    // const inputs = form.querySelectorAll('input, select, textarea');
+    // inputs.forEach(input => {
+    //     input.disabled = true;
+    //     input.style.opacity = "0.6";
+    // });
 
-    // Переводим ответы на красивый язык для сообщения
-    let answerText = '';
-    if (selectedAnswer === 'yes') answerText = '✅ Әрине келемін';
-    if (selectedAnswer === 'pair') answerText = '👩‍❤️‍👨 Жұбыммен келемін';
-    if (selectedAnswer === 'no') answerText = '❌ Өкінішке орай, қатыса алмаймын';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx-rhcce5h2qnHR7ey442Y0jKEbpMbHPWDORHrK6df7PPvhcyGAFjGgleuSP-f-OixqXg/exec';
+    const formData = new FormData(form);
 
-    // Формируем красивый текст сообщения
-    const message = `🔔 *Жаңа жауап қабылданды!*\n\n👤 *Есімі:* ${guestName}\n💬 *Жауабы:* ${answerText}`;
+    const nameField = form.querySelector('[name="name"]');
+    const attendanceField = form.querySelector('[name="attendance"]:checked');
+    console.log("1. Элемент инпута имени:", nameField);
+    console.log("2. Значение из инпута имени:", nameField ? nameField.value : "НЕ НАЙДЕН ИНПУТ С name='name'");
+    console.log("3. Выбранный элемент радиокнопки:", attendanceField);
+    console.log("4. Значение выбранной радиокнопки:", attendanceField ? attendanceField.value : "НЕ ВЫБРАН РАДИОБАТТОН С name='attendance'");
 
-    // URL для отправки запроса в Telegram API
-    // const url = `https://telegram.org/bot${telegramToken}/sendMessage`;
-    const url = `https://api.telegram.org/bot8822621557:AAEi9BVjtnVSh3BvpQx9DJUVpa-xoaHh7e8/sendMessage`;
 
-    // Отправляем данные на сервера Telegram
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-            parse_mode: 'Markdown'
-        })
-    })
+    fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => {
-            if (response.ok) {
-                // Успех — передаем текст благодарности
-                openCustomModal('Рахмет! Жауап сәтті қабылданды.', false);
-                document.querySelector('.rsvp-form').reset(); // Очищаем форму
-            } else {
-                // Ошибка сервера Telegram (например, неверный токен или ID)
-                openCustomModal('Жауап жіберілмеді. Серверде қате кетті.', true);
-            }
+            openCustomModal('Рахмет! Жауап сәтті қабылданды.', false);
+
+            // Фиксируем финальный статус
+            button.innerHTML = "Жіберу";
+            //button.disabled = true;
+            button.style.opacity = "0.6";
         })
         .catch(error => {
-            console.error('Ошибка:', error);
-            // Ошибка сети (интернет отключен или заблокирован запрос)
+            console.error('Ошибка!', error.message);
+            button.disabled = false;
+            button.style.opacity = "1";
+            inputs.forEach(input => {
+                input.disabled = false;
+                input.style.opacity = "1";
+            });
             openCustomModal('Желіде қате кетті. Кейінірек қайталап көріңіз.', true);
         });
 }
