@@ -135,7 +135,7 @@ body {
 /* Интерактивная кнопка музыкального плеера */
 .music-player-btn {
     position: absolute;
-    right: 5px;
+    right: -6px;
     bottom: 32%;
     /* Точно позиционируем над свадебным букетом справа */
     width: 95px;
@@ -238,6 +238,22 @@ body {
     text-align: center;
     letter-spacing: 6px;
     opacity: 0.8;
+
+    animation: goldShimmer 2s ease-in-out infinite;
+}
+
+/* Описание анимации мерцания */
+@keyframes goldShimmer {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(0.95); /* Чуть-чуть уменьшаются */
+        filter: brightness(0.9);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05); /* Мягко увеличиваются и вспыхивают */
+        filter: brightness(1.2);
+    }
 }
 
 /* Вставляем три изящные золотые точки в ряд */
@@ -258,8 +274,8 @@ body {
     font-size: 30px;
     color: #3a3a3a;
     line-height: 1.4;
-    padding: 0 10px;
-    margin-bottom: 15px; /*50px*/
+    padding: 0 10px 0 15px;
+    margin-bottom: 15px;
 }
 
 /* Строгие печатные надписи ("СІЗДЕРДІ ҰЛЫМЫЗ") */
