@@ -697,6 +697,7 @@ body {
     color: #4b5243;
     font-weight: normal;
     margin-bottom: 15px;
+    text-shadow: 0.15px 0 0 #4b5243, -0.15px 0 0 #4b5243;
 }
 
 /* Имена родителей размашистым шрифтом */
@@ -706,6 +707,18 @@ body {
     color: #4b5243;
     font-weight: normal;
     line-height: 1.2;
+    text-shadow: 0.15px 0 0 #4b5243, -0.15px 0 0 #4b5243;
+}
+
+.custom-r {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: 100;
+    display: inline-block;
+    transform: skewX(-15deg);
+    font-size: 44px;
+    margin-right: -10px;
+    opacity: 0.95;
 }
 
 /* Секция RSVP */
