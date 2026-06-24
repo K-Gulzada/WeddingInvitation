@@ -703,11 +703,11 @@ body {
 /* Имена родителей размашистым шрифтом */
 .hosts-names {
     font-family: 'ChampionScript', cursive;
-    font-size: 50px;
+    font-size: 54px;
     color: #4b5243;
     font-weight: normal;
     line-height: 1.2;
-    text-shadow: 0.15px 0 0 #4b5243, -0.15px 0 0 #4b5243;
+    text-shadow: 0.55px 0 0 #4b5243, -0.55px 0 0 #4b5243;
 }
 
 .custom-r {
@@ -716,9 +716,9 @@ body {
     font-weight: 100;
     display: inline-block;
     transform: skewX(-16deg);
-    font-size: 44px;
+    font-size: 48px;
     margin-right: -10px;
-    opacity: 0.9;
+    opacity: 0.85;
     text-shadow: none !important; 
 }
 
