@@ -719,6 +719,7 @@ body {
     font-size: 44px;
     margin-right: -10px;
     opacity: 0.95;
+    text-shadow: none !important; 
 }
 
 /* Секция RSVP */
