@@ -715,10 +715,10 @@ body {
     font-style: italic;
     font-weight: 100;
     display: inline-block;
-    transform: skewX(-15deg);
+    transform: skewX(-16deg);
     font-size: 44px;
     margin-right: -10px;
-    opacity: 0.95;
+    opacity: 0.9;
     text-shadow: none !important; 
 }
 
